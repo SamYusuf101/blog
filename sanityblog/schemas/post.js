@@ -60,4 +60,6 @@ export default {
       return Object.assign({}, selection, {
         subtitle: author && `by ${author}`,
       });
-    
+    },
+  },
+};
