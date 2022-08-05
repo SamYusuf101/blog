@@ -5,18 +5,20 @@ import logaImg from "../public/loga.png";
 import Header from "../components/Header";
 import { sanityClient, urlFor } from "../sanity";
 import { Post } from "../typings";
+import Link from "next/link";
 
 interface Props {
   posts: [Post];
 }
 
-export default function Home(props: Props) {
+export default function Home({ posts }: Props) {
   return (
     <div className="max-w-7xl mx-auto">
       <Head>
         <title>Sam's blog</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
+
       <Header />
       <div
         className="flex justify-between items-center pr-3 bg-gradient-to-r from-[#daca38] to-[#be6c6c] border-y border-black
@@ -38,8 +40,16 @@ export default function Home(props: Props) {
           <Image src={logaImg} alt="/" />
         </div>
       </div>
-      D:
       {/*posts*/}
+      <div>
+        {posts.map((post) => (
+          <Link key={post._id} href={`/post/${post.slug.current}`}>
+            <div>
+              <img src={urlFor(post.mainImage).url()!} alt="" />
+            </div>
+          </Link>
+        ))}
+      </div>
     </div>
   );
 }
