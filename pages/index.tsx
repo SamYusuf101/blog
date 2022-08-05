@@ -3,15 +3,20 @@ import Head from "next/head";
 import Image from "next/image";
 import logaImg from "../public/loga.png";
 import Header from "../components/Header";
+import { sanityClient, urlFor } from "../sanity";
+import { Post } from "../typings";
 
-const Home: NextPage = () => {
+interface Props {
+  posts: [Post];
+}
+
+export default function Home(props: Props) {
   return (
     <div className="max-w-7xl mx-auto">
       <Head>
         <title>Sam's blog</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-
       <Header />
       <div
         className="flex justify-between items-center pr-3 bg-gradient-to-r from-[#daca38] to-[#be6c6c] border-y border-black
@@ -33,8 +38,29 @@ const Home: NextPage = () => {
           <Image src={logaImg} alt="/" />
         </div>
       </div>
+      D:
+      {/*posts*/}
     </div>
   );
-};
+}
 
-export default Home;
+export const getServerSideProps = async () => {
+  const query = `*[_type == "post"]{
+    _id,
+    title,
+    author-> {
+      name,
+      image
+    },
+    description,
+    mainImage,
+    slug
+  }`;
+
+  const posts = await sanityClient.fetch(query);
+  return {
+    props: {
+      posts,
+    },
+  };
+};
