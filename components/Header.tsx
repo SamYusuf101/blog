@@ -12,8 +12,8 @@ function Header() {
           </Link>
         </div>
         <div className="hidden md:inline-flex items-center space-x-5 justify-center">
-          <h3>About</h3>
-          <h3 className="border-">Contact</h3>
+          <h3 className="text-black">About</h3>
+          <h3 className="text-black">Contact</h3>
           <h3 className="text-white bg-green-600 rounded-full px-4 py-1">
             Follow
           </h3>

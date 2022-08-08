@@ -1,7 +1,7 @@
-import Header from "../components/Header";
-import { sanityClient, urlFor } from "../sanity";
-import { Post } from "../typings";
 import { GetStaticProps } from "next";
+import Header from "../../components/Header";
+import { sanityClient, urlFor } from "../../sanity";
+import { Post } from "../../typings";
 
 interface Props {
   post: Post;
@@ -11,6 +11,11 @@ function Post({ post }: Props) {
   return (
     <main>
       <Header />
+      <img
+        className="w-full h-40 object-cover"
+        src={urlFor(post.mainImage).url()!}
+        alt=""
+      />
     </main>
   );
 }
@@ -32,6 +37,7 @@ export const getStaticPaths = async () => {
       slug: post.slug.current,
     },
   }));
+
   return {
     paths,
     fallback: "blocking",
@@ -62,15 +68,4 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   });
 
   if (!post) {
-    return {
-      notFound: true,
-    };
-  }
-
-  return {
-    props: {
-      post,
-    },
-    revalidate: 60,
-  };
-};
+ 
