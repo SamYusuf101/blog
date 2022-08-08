@@ -54,7 +54,7 @@ export default function Home({ posts }: Props) {
                 src={urlFor(post.mainImage).url()!}
                 alt=""
               />
-              <div className="flex justify-between p-5 bg-white">
+              <div className="flex justify-between p-5 bg-green-400">
                 <div>
                   <p className="text-lg font-bold">{post.title}</p>
                   <p className="text-xs">
