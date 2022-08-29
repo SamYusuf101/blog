@@ -4,7 +4,7 @@ export default {
     type: "document",
     fields: [
       {
-        name: "title",
+        name: "name",
         type: "string",
       },
       {
@@ -14,7 +14,7 @@ export default {
         description: "comments wont show on the site without approval",
       },
       {
-        name: "slug",
+        name: "email",
         type: "string",
        
       },

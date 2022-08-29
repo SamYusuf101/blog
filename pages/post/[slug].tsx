@@ -5,6 +5,7 @@ import { Post } from "../../typings";
 import PortableText from "react-portable-text";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { PerformanceNodeTiming } from "perf_hooks";
+import { useState } from "react";
 
 interface IFormInput {
   _id: string;
@@ -17,6 +18,7 @@ interface Props {
 }
 
 function Post({ post }: Props) {
+  const [submitted, setSubmitted] = useState(false);
   const {
     register,
     handleSubmit,
@@ -30,9 +32,11 @@ function Post({ post }: Props) {
     })
     .then(() => {
       console.log(data);
+      setSubmitted(true);
     })
     .catch((err) => {
       console.log(err);
+      setSubmitted(false);
     });
   };
 
@@ -91,8 +95,18 @@ function Post({ post }: Props) {
       </article>
 
       <hr className="max-w-lg my-5 mx-auto border border-green-500" />
+       
+       {submitted ? (
+        <>
+        <div className="flex flex-col py-10 my-10 bg-green-500 text-white
+        max-w-2xl mx-auto p-5">
+        <h3 className ="text-3xl font-bold">comment has been Submitted</h3>
+        <p>Once it has been approved, it will appear below!</p>
+        </div>
+        </>
+       ):(
 
-      <form
+        <form
         onSubmit={handleSubmit(onSubmit)}
         className="flex flex-col p-5 max-w-2xl mx-auto mb-10"
       >
@@ -153,6 +167,22 @@ function Post({ post }: Props) {
           focus:outline-none text-white font-bold py-2 px-4 rounded cursor-pointer"
         />
       </form>
+
+       )}
+       <div className="flex flex-col p-10 my-10 max-w-2xl mx-auto shadow-green-500 
+       shadow space-y-2 text-black">
+        <h3 className="text-4xl">Comments</h3>
+        <hr className="pb-2"></hr>
+
+       {post.comments.map((comment)=>(
+        <div key={comment._id}>
+          <p>
+            <span className="text-green-500">{comment.name}: </span>
+            {comment.comment}
+            </p>
+        </div>
+       ))}
+      </div>
     </main>
   );
 }
