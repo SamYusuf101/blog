@@ -15,7 +15,7 @@ export default function Home({ posts }: Props) {
   return (
     <div className="max-w-7xl mx-auto">
       <Head>
-        <title>Sam's blog</title>
+        <title>Sa blog</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
