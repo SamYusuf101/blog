@@ -19,7 +19,7 @@ function Header() {
           </h3>
         </div>
       </div>
-      <div className="flex items-center space-x-5 text-green-600">
+      <div className="flex items-center space-x-5 text-green-500">
         
       </div>
     </header>
