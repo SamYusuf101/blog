@@ -6,7 +6,7 @@ function Header() {
   return (
     <header className=" flex justify-between p-5 max-w-8xl mx-auto">
       <div className="flex space-x-5">
-        <div className=" w-20 h-35 object-contain cursor-pointer ">
+        <div className=" w-20 h-34 object-contain cursor-pointer ">
           <Link href="/">
             <Image src={logaImg} alt="/" />
           </Link>
